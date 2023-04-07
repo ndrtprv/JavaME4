@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">JavaME4</string>
+    <string name="instance_1">Enter id:</string>
+    <string name="insert_user">Insert user</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="wipeout_user">Wipe out data</string>
+    <string name="show">Show data</string>
+    <string name="sort_by">Sort by</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string-array name="sort_options">
+        <item>Default sort</item>
+        <item>Name</item>
+        <item>Surname</item>
+        <item>Email</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
