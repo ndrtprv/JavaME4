@@ -44,7 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.show_email_txt.setText(String.valueOf(users.get(position).getEmail()));
         holder.show_address_txt.setText(String.valueOf(users.get(position).getAddress()));
         holder.show_image.setImageBitmap(Bitmap.createScaledBitmap(
-                bmp, holder.show_image.getWidth(), holder.show_image.getHeight(), false));
+                bmp, 200, 300, false));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return users.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView show_name_txt, show_surname_txt, show_phone_txt, show_email_txt, show_address_txt;
         ImageView show_image;

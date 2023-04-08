@@ -13,7 +13,6 @@
     <string name="email">Email</string>
     <string name="address">Address</string>
     <string-array name="sort_options">
-        <item>Default sort</item>
         <item>Name</item>
         <item>Surname</item>
         <item>Email</item>

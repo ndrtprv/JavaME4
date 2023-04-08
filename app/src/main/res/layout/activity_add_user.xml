@@ -64,7 +64,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="Choose photo from gallery"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/baseline_add_box_24" />
 
     </LinearLayout>
 
@@ -72,9 +72,10 @@
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:background="#246EE9"
         android:text="Save data"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#246EE9"/>
+        app:backgroundTint="#246EE9" />
 
 </LinearLayout>
