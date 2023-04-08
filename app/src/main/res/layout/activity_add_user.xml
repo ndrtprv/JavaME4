@@ -26,6 +26,7 @@
         android:id="@+id/enterPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="phone"
         android:hint="@string/phone"
         android:minHeight="48dp"/>
 
@@ -33,6 +34,7 @@
         android:id="@+id/enterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:hint="@string/email"
         android:minHeight="48dp"/>
 

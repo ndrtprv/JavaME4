@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -40,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        /*sorting.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        users = userDBHelper.getAllUsers("ID");
+        customAdapter = new CustomAdapter(MainActivity.this, users);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+        sorting.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sort_option = switch (position) {
@@ -50,17 +56,15 @@ public class MainActivity extends AppCompatActivity {
                     case 2 -> "Email";
                     default -> "ID";
                 };
+                users = userDBHelper.getAllUsers(sort_option);
+                customAdapter = new CustomAdapter(MainActivity.this, users);
+                recyclerView.setAdapter(customAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
-        });*/
-
-        sort_option = sorting.getSelectedItem().toString();
-        users = userDBHelper.getAllUsers(sort_option);
-        customAdapter = new CustomAdapter(MainActivity.this, users);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        });
 
         recyclerView.addItemDecoration(new DividerItemDecoration(
                     recyclerView.getContext(),
