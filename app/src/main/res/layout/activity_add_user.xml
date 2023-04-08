@@ -78,6 +78,8 @@
         android:background="#246EE9"
         android:text="Save data"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:backgroundTint="#246EE9" />
 
 </LinearLayout>

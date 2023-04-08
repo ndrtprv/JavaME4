@@ -1,5 +1,6 @@
 package com.example.javame4;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,12 +24,14 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     UserDBHelper userDBHelper;
-    Button add_button, clean_table;
+    Button add_button, clean_table, edit_button;
     ArrayList<UserInfo> users;
     CustomAdapter customAdapter;
     RecyclerView recyclerView;
     Spinner sorting;
     String sort_option;
+    EditText edit_id;
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userDBHelper = new UserDBHelper(this);
         recyclerView = findViewById(R.id.recyclerView);
+        frameLayout = findViewById(R.id.frame);
 
         sorting = findViewById(R.id.spinner);
         add_button = findViewById(R.id.button3);
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         users = userDBHelper.getAllUsers("ID");
-        customAdapter = new CustomAdapter(MainActivity.this, users);
+        customAdapter = new CustomAdapter(MainActivity.this, this, users);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     default -> "ID";
                 };
                 users = userDBHelper.getAllUsers(sort_option);
-                customAdapter = new CustomAdapter(MainActivity.this, users);
+                customAdapter = new CustomAdapter(MainActivity.this,MainActivity.this, users);
                 recyclerView.setAdapter(customAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             }
@@ -73,14 +79,15 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
 
-        recyclerView.addItemDecoration(new MaterialDividerItemDecoration(
-                recyclerView.getContext(),
-                ((LinearLayoutManager) Objects.requireNonNull(
-                        recyclerView.getLayoutManager())).getOrientation()
-        ));
+        edit_id = findViewById(R.id.enterId);
+
+        edit_button = findViewById(R.id.button);
+        edit_button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EditUser.class);
+            startActivity(intent);
+        });
 
         clean_table = findViewById(R.id.button4);
-
         clean_table.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Do you want to clean table?")
@@ -88,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Accept", (dialog, id) -> {
                         userDBHelper.cleanTable();
                         users = userDBHelper.getAllUsers(sort_option);
-                        customAdapter = new CustomAdapter(MainActivity.this, users);
+                        customAdapter = new CustomAdapter(MainActivity.this,this, users);
                         recyclerView.setAdapter(customAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        recyclerView.setLayoutManager(
+                                new LinearLayoutManager(MainActivity.this));
                         Toast.makeText(MainActivity.this,
                                 "Cleaning table successful.", Toast.LENGTH_SHORT).show();
                     })
@@ -98,5 +106,13 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            recreate();
+        }
     }
 }

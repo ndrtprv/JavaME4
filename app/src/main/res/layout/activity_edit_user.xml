@@ -64,7 +64,32 @@
             android:adjustViewBounds="true"
             android:contentDescription="Choose photo from gallery"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/baseline_add_box_24" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#246EE9"
+        android:text="Edit data"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="#246EE9" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#246EE9"
+        android:text="Delete data"
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="#246EE9" />
+
 </LinearLayout>

@@ -82,6 +82,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
+        android:id="@+id/frame"
+        android:background="@drawable/layout_border"
         android:layout_width="409dp"
         android:layout_height="457dp"
         android:layout_marginTop="15dp"
@@ -94,10 +96,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="466dp"
+            android:layout_width="409dp"
+            android:layout_height="455dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp" />
     </FrameLayout>

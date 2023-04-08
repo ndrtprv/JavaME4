@@ -122,7 +122,12 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     public void cleanTable () {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE,null,null);
+        long res = db.delete(TABLE,null,null);
+        if (res != -1) {
+            Toast.makeText(context,"Deletion successful.",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context,"Deletion failed.",Toast.LENGTH_SHORT).show();
+        }
         db.close();
     }
 
@@ -143,7 +148,13 @@ public class UserDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ADDRESS,address);
         values.put(COLUMN_PHOTO,photo);
 
-        db.update(TABLE, values,COLUMN_ID + " = ?", new String[] {Integer.toString(id)});
+        long res = db.update(TABLE, values,COLUMN_ID + " = ?",
+                new String[] {Integer.toString(id)});
+        if (res != -1) {
+            Toast.makeText(context,"Updating successful.",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context,"Updating failed.",Toast.LENGTH_SHORT).show();
+        }
         db.close();
     }
 

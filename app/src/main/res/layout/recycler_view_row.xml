@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="#3EB489"
     android:divider="@color/black"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/mainLayout">
 
     <ImageView
         android:id="@+id/show_image"

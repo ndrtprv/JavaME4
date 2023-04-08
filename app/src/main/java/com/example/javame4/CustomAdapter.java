@@ -1,12 +1,16 @@
 package com.example.javame4;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +21,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
 
     private Context context;
+    Activity activity;
     private ArrayList<UserInfo> users;
 
-    CustomAdapter(Context context, ArrayList<UserInfo> users) {
+    CustomAdapter(Activity activity, Context context, ArrayList<UserInfo> users) {
+        this.activity = activity;
         this.context = context;
         this.users = users;
     }
@@ -45,6 +51,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.show_address_txt.setText(String.valueOf(users.get(position).getAddress()));
         holder.show_image.setImageBitmap(Bitmap.createScaledBitmap(
                 bmp, 200, 300, false));
+        holder.mainLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditUser.class);
+            intent.putExtra("id",users.get(position).getId());
+            intent.putExtra("name",users.get(position).getName());
+            intent.putExtra("surname",users.get(position).getSurname());
+            intent.putExtra("phone",users.get(position).getPhone());
+            intent.putExtra("email",users.get(position).getEmail());
+            intent.putExtra("address",users.get(position).getAddress());
+            intent.putExtra("photo",users.get(position).getPhoto());
+            activity.startActivityForResult(intent,1);
+        });
     }
 
     @Override
@@ -56,6 +73,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         TextView show_name_txt, show_surname_txt, show_phone_txt, show_email_txt, show_address_txt;
         ImageView show_image;
+        LinearLayout mainLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             show_name_txt = itemView.findViewById(R.id.show_name);
@@ -64,6 +83,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             show_email_txt = itemView.findViewById(R.id.show_email);
             show_address_txt = itemView.findViewById(R.id.show_address);
             show_image = itemView.findViewById(R.id.show_image);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }
