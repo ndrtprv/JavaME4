@@ -1,5 +1,7 @@
 package com.example.javame4;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -43,6 +45,11 @@ public class EditUser extends AppCompatActivity {
 
         getAndSetIntentData();
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(name + " " + surname);
+        }
+
         imageView.setOnClickListener(v -> openGallery());
 
         edit = findViewById(R.id.edit_button);
@@ -79,7 +86,11 @@ public class EditUser extends AppCompatActivity {
                     update_phone.getText().toString(),
                     update_email.getText().toString(),
                     update_address.getText().toString(), photo);
+            finish();
         });
+
+        delete = findViewById(R.id.delete_button);
+        delete.setOnClickListener(v -> assureRemoveOfOneUser());
     }
 
     void getAndSetIntentData() {
@@ -123,5 +134,19 @@ public class EditUser extends AppCompatActivity {
             selectedImage = data.getData();
             imageView.setImageURI(selectedImage);
         }
+    }
+
+    void assureRemoveOfOneUser () {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Remove " + name + " " + surname + "?");
+        builder.setMessage("Are you sure about that?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            db = new UserDBHelper(EditUser.this);
+            db.removeUser(id);
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {});
+        builder.setCancelable(false);
+        builder.create().show();
     }
 }

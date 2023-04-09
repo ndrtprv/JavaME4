@@ -1,6 +1,5 @@
 package com.example.javame4;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         Bitmap bmp = BitmapFactory.decodeByteArray(users.get(position).getPhoto(),
                 0, users.get(position).getPhoto().length);
 
+        holder.show_id_txt.setText(String.valueOf(users.get(position).getId()));
         holder.show_name_txt.setText(String.valueOf(users.get(position).getName()));
         holder.show_surname_txt.setText(String.valueOf(users.get(position).getSurname()));
         holder.show_phone_txt.setText(String.valueOf(users.get(position).getPhone()));
@@ -71,12 +71,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView show_name_txt, show_surname_txt, show_phone_txt, show_email_txt, show_address_txt;
+        TextView show_id_txt, show_name_txt, show_surname_txt,
+                show_phone_txt, show_email_txt, show_address_txt;
         ImageView show_image;
         LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            show_id_txt = itemView.findViewById(R.id.show_id);
             show_name_txt = itemView.findViewById(R.id.show_name);
             show_surname_txt = itemView.findViewById(R.id.show_surname);
             show_phone_txt = itemView.findViewById(R.id.show_phone);

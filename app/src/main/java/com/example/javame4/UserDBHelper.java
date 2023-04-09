@@ -125,6 +125,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
         long res = db.delete(TABLE,null,null);
         if (res != -1) {
             Toast.makeText(context,"Deletion successful.",Toast.LENGTH_SHORT).show();
+            db.delete("sqlite_sequence","name = ?", new String[]{TABLE});
         } else {
             Toast.makeText(context,"Deletion failed.",Toast.LENGTH_SHORT).show();
         }
@@ -133,7 +134,33 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     public void removeUser (int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE,COLUMN_ID + " = ?",new String[] {Integer.toString(id)});
+        long res = db.delete(TABLE,COLUMN_ID + " = ?",
+                new String[] {Integer.toString(id)});
+        if (res != -1) {
+            Toast.makeText(context,"Deletion of user successful.",Toast.LENGTH_SHORT).show();
+            ContentValues values = new ContentValues();
+            values.put("seq",0);
+            db.update("sqlite_sequence",values,"name = ?", new String[]{TABLE});
+            SQLiteDatabase db1 = this.getReadableDatabase();
+            Cursor cursor = db1.rawQuery("SELECT * FROM " + TABLE
+                    + " ORDER BY " + COLUMN_ID + ";", null);
+            int item_id = 1;
+            if (cursor.moveToFirst()) {
+                do {
+                    @SuppressLint("Range") int temp_id = cursor.getInt(
+                            cursor.getColumnIndex(COLUMN_ID));
+                    values = new ContentValues();
+                    values.put(COLUMN_ID,item_id);
+                    db1.update(TABLE,values,COLUMN_ID + " = ?",
+                            new String[] {Integer.toString(temp_id)});
+                    item_id++;
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            db1.close();
+        } else {
+            Toast.makeText(context,"Deletion of user failed.",Toast.LENGTH_SHORT).show();
+        }
         db.close();
     }
 

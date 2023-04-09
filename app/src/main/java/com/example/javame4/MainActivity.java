@@ -12,26 +12,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     UserDBHelper userDBHelper;
-    Button add_button, clean_table, edit_button;
+    Button add_button, clean_table;
     ArrayList<UserInfo> users;
     CustomAdapter customAdapter;
     RecyclerView recyclerView;
     Spinner sorting;
     String sort_option;
-    EditText edit_id;
     FrameLayout frameLayout;
+    ImageView empty_image;
+    TextView empty_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         userDBHelper = new UserDBHelper(this);
         recyclerView = findViewById(R.id.recyclerView);
         frameLayout = findViewById(R.id.frame);
+        empty_image = findViewById(R.id.no_data);
+        empty_text = findViewById(R.id.no_data_txt);
 
         sorting = findViewById(R.id.spinner);
         add_button = findViewById(R.id.button3);
@@ -79,14 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 )
         );
 
-        edit_id = findViewById(R.id.enterId);
-
-        edit_button = findViewById(R.id.button);
-        edit_button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, EditUser.class);
-            startActivity(intent);
-        });
-
         clean_table = findViewById(R.id.button4);
         clean_table.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -99,6 +93,15 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(customAdapter);
                         recyclerView.setLayoutManager(
                                 new LinearLayoutManager(MainActivity.this));
+
+                        if (users.size() == 0) {
+                            empty_image.setVisibility(View.VISIBLE);
+                            empty_text.setVisibility(View.VISIBLE);
+                        } else {
+                            empty_image.setVisibility(View.GONE);
+                            empty_text.setVisibility(View.GONE);
+                        }
+
                         Toast.makeText(MainActivity.this,
                                 "Cleaning table successful.", Toast.LENGTH_SHORT).show();
                     })
@@ -106,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         });
+
+        if (users.size() == 0) {
+            empty_image.setVisibility(View.VISIBLE);
+            empty_text.setVisibility(View.VISIBLE);
+        } else {
+            empty_image.setVisibility(View.GONE);
+            empty_text.setVisibility(View.GONE);
+        }
     }
 
     @Override

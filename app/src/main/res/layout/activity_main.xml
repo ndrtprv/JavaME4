@@ -7,45 +7,6 @@
     android:background="#3EB489"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/enterId"
-        android:layout_width="147dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:autofillHints="1"
-        android:digits="0123456789"
-        android:ems="10"
-        android:hint="@string/instance_1"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="15dp"
-        android:background="#246EE9"
-        android:text="@string/edit"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#246EE9"
-        app:layout_constraintStart_toEndOf="@+id/enterId"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="15dp"
-        android:background="#246EE9"
-        android:text="@string/remove"
-        app:backgroundTint="#246EE9"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="215dp"
@@ -61,8 +22,8 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:background="#246EE9"
         android:text="@string/insert_user"
         app:backgroundTint="#246EE9"
@@ -73,8 +34,8 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
         android:background="#246EE9"
         android:text="@string/wipeout_user"
         app:backgroundTint="#246EE9"
@@ -83,11 +44,11 @@
 
     <FrameLayout
         android:id="@+id/frame"
-        android:background="@drawable/layout_border"
         android:layout_width="409dp"
         android:layout_height="457dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
+        android:background="@drawable/layout_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +63,35 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp" />
+
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/no_data"
+        android:layout_width="85dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="350dp"
+        android:alpha="0.25"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_table_rows_24" />
+
+    <TextView
+        android:id="@+id/no_data_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0.5"
+        android:text="No users. Please press Insert User if you want to add."
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
