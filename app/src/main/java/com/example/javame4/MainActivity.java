@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     default -> "ID";
                 };
                 users = userDBHelper.getAllUsers(sort_option);
-                customAdapter = new CustomAdapter(MainActivity.this,MainActivity.this, users);
+                customAdapter = new CustomAdapter(MainActivity.this,
+                        MainActivity.this, users);
                 recyclerView.setAdapter(customAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             }
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Accept", (dialog, id) -> {
                         userDBHelper.cleanTable();
                         users = userDBHelper.getAllUsers(sort_option);
-                        customAdapter = new CustomAdapter(MainActivity.this,this, users);
+                        customAdapter = new CustomAdapter(
+                                MainActivity.this,this, users);
                         recyclerView.setAdapter(customAdapter);
                         recyclerView.setLayoutManager(
                                 new LinearLayoutManager(MainActivity.this));

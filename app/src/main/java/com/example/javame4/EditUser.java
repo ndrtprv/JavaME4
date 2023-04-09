@@ -64,12 +64,15 @@ public class EditUser extends AppCompatActivity {
                     }
                 }
 
-                Bitmap compressedBitmap = Bitmap.createScaledBitmap(originalBitmap, width, height, true);
+                Bitmap compressedBitmap = Bitmap.createScaledBitmap(
+                        originalBitmap, width, height, true);
                 ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
-                compressedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayInputStream);
+                compressedBitmap.compress(Bitmap.CompressFormat.JPEG,
+                        80, byteArrayInputStream);
                 photo = byteArrayInputStream.toByteArray();
             } catch (IOException e) {
-                Toast.makeText(this, "Something went wrong while getting image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Something went wrong while getting image",
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
             db = new UserDBHelper(EditUser.this);
@@ -108,14 +111,16 @@ public class EditUser extends AppCompatActivity {
             update_phone.setText(phone);
             update_email.setText(email);
             update_address.setText(address);
-            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, 110, 180, false));
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp,
+                    110, 180, false));
         } else {
             Toast.makeText(this,"Data is absent.",Toast.LENGTH_SHORT).show();
         }
     }
 
     void openGallery() {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        Intent gallery = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
