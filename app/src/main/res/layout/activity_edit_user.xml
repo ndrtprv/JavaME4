@@ -13,48 +13,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/name"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/surname"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
-        android:minHeight="48dp"/>
+        android:inputType="phone"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
-        android:minHeight="48dp"/>
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/address"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit your profile photo"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/editImageViewPhoto"
@@ -85,11 +87,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="#246EE9"
+        android:background="#4D86E4"
         android:text="Delete data"
-        android:textColor="#FF0000"
+        android:textColor="#650C0C"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:backgroundTint="#246EE9" />
+        app:backgroundTint="#4D86E4" />
 
 </LinearLayout>

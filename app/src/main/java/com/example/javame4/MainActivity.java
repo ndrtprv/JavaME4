@@ -94,14 +94,8 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setLayoutManager(
                                 new LinearLayoutManager(MainActivity.this));
 
-                        if (users.size() == 0) {
-                            empty_image.setVisibility(View.VISIBLE);
-                            empty_text.setVisibility(View.VISIBLE);
-                        } else {
-                            empty_image.setVisibility(View.GONE);
-                            empty_text.setVisibility(View.GONE);
-                        }
-
+                        empty_image.setVisibility(View.VISIBLE);
+                        empty_text.setVisibility(View.VISIBLE);
                         Toast.makeText(MainActivity.this,
                                 "Cleaning table successful.", Toast.LENGTH_SHORT).show();
                     })
